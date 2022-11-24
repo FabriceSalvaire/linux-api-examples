@@ -12,7 +12,7 @@ call.  By simplicity, the Linux kernel can only implement a limited
 list of core functions.  Because it would not make no sense to
 implement an OO API with zillion of methods wrapped by system calls.
 Actually, the kernel implements roughly 400 system calls (see
-`https://github.com/torvalds/linux/blob/master/arch/x86/entry/syscalls/syscall_64.tbl`).
+https://github.com/torvalds/linux/blob/master/arch/x86/entry/syscalls/syscall_64.tbl).
 
 The second one, is to use several memory buffers through a virtual
 file system (VFS).  It explains why the Linux kernel exports events
