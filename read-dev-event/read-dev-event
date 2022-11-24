@@ -1,0 +1,51 @@
+#! /usr/bin/env python3
+
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright Fabrice SALVAIRE 2022
+
+####################################################################################################
+
+import argparse
+import struct
+
+####################################################################################################
+
+def read_dev_event(dev_path: str) -> None:
+    # FORMAT represents the format used by linux kernel input event struct
+    #   See  see https://github.com/torvalds/linux/blob/master/include/uapi/linux/input.h#L28
+    # https://docs.python.org/3/library/struct.html
+    #   H  unsigned short 16-bit 2-byte
+    #   i  int            32-bit 4-byte
+    #   L  unsigned long  64-bit 8-byte /!\ Python doc is wrong on X86_64
+    FORMAT = 'LLHHi'
+    EVENT_SIZE = struct.calcsize(FORMAT)
+    print(f"Event struct size is {EVENT_SIZE}-byte")
+    for _ in 'HiL':
+        print(f"  {_} size is {struct.calcsize(_)}-byte")
+    with open(dev_path, "rb") as fh:
+        # Hit Ctrl+C to exit the loop
+        while True:
+            event = fh.read(EVENT_SIZE)
+            (tv_sec, tv_usec, type_, code, value) = data = struct.unpack(FORMAT, event)
+            if type_ != 0:
+                print(f"@{tv_sec}.{tv_usec} Event type {type_}, code {code}, value {value}")
+            else:
+                # Events with type, code and value == 0 are separator events
+                # print(data)
+                print("="*80)
+
+####################################################################################################
+
+if __name__ == '__main__':
+
+    parser = argparse.ArgumentParser(description='read dev input')
+    parser.add_argument(
+        'event_number',
+        metavar='EventNumber',
+        type=int,
+        help='event number',
+    )
+    args = parser.parse_args()
+    
+    dev_path = f"/dev/input/event{args.event_number}"
+    read_dev_event(dev_path)
