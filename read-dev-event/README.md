@@ -36,9 +36,8 @@ For more details, see https://github.com/torvalds/linux/blob/master/include/uapi
 
 To go further:
 * Articles on system calls
-
- - https://en.wikibooks.org/wiki/X86_Assembly/Interfacing_with_Linux
- - https://www.cs.uaf.edu/2017/fall/cs301/lecture/11_17_syscall.html
+    * https://en.wikibooks.org/wiki/X86_Assembly/Interfacing_with_Linux
+    * https://www.cs.uaf.edu/2017/fall/cs301/lecture/11_17_syscall.html
 
 ## How to use the program
 
