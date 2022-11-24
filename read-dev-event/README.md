@@ -13,14 +13,17 @@ limited list of core functions.  Because it would not make no sense to
 implement an OO API with zillion of methods wrapped by system calls.
 Actually, the kernel implements roughly 400 system calls (see
 https://github.com/torvalds/linux/blob/master/arch/x86/entry/syscalls/syscall_64.tbl).
+However the Microsoft Windows OS has something like 5 times more
+system calls due to its monolitic design.  It means Windows has system
+calls to manage mouse for example.
 
 The second one, is to use several memory buffers through a virtual
 file system (VFS).  It explains why the Linux kernel exports events
 from input devices to the user space using the
 `/dev/input/event<NUMBER>` devices files.  Basically, the kernel
 manages device hot plug and translate a data flow from a bus like USB
-to a buffer, where the events are serialised to this simple binary
-structure:
+to a buffer, where the events are queued and serialised to this simple
+binary structure:
 
 ```
 struct input_event {
@@ -36,8 +39,9 @@ For more details, see https://github.com/torvalds/linux/blob/master/include/uapi
 
 To go further:
 * Articles on system calls
-    * https://en.wikibooks.org/wiki/X86_Assembly/Interfacing_with_Linux
     * https://www.cs.uaf.edu/2017/fall/cs301/lecture/11_17_syscall.html
+    * https://en.wikibooks.org/wiki/X86_Assembly/Interfacing_with_Linux
+    * https://github.com/j00ru/windows-syscalls - Microsoft Windows System Call Tables
 
 ## How to use the program
 
