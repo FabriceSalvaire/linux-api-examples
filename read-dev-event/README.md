@@ -7,9 +7,9 @@ kernel and user space.  It means there is a bridge to cross between
 the kernel and user space.  For this reason, the Linux kernel
 implements two mechanism to communicate with the user space.
 
-The first one, use the X86_64 syscall instruction to perform a system
-call.  By simplicity, the Linux kernel can only implement a limited
-list of core functions.  Because it would not make no sense to
+The first one, use the X86_64 `syscall` instruction to perform a
+system call.  By simplicity, the Linux kernel can only implement a
+limited list of core functions.  Because it would not make no sense to
 implement an OO API with zillion of methods wrapped by system calls.
 Actually, the kernel implements roughly 400 system calls (see
 https://github.com/torvalds/linux/blob/master/arch/x86/entry/syscalls/syscall_64.tbl).
@@ -33,6 +33,11 @@ struct input_event {
 ```
 
 For more details, see https://github.com/torvalds/linux/blob/master/include/uapi/linux/input.h#L28
+
+To go further:
+* Articles on system calls
+ * https://en.wikibooks.org/wiki/X86_Assembly/Interfacing_with_Linux
+ * https://www.cs.uaf.edu/2017/fall/cs301/lecture/11_17_syscall.html
 
 ## How to use the program
 
