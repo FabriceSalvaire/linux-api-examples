@@ -22,8 +22,8 @@ def read_dev_event(dev_path: str) -> None:
     print(f"Event struct size is {EVENT_SIZE}-byte")
     for _ in 'HiL':
         print(f"  {_} size is {struct.calcsize(_)}-byte")
+    print("Hit Ctrl+C to exit the loop")
     with open(dev_path, "rb") as fh:
-        # Hit Ctrl+C to exit the loop
         while True:
             event = fh.read(EVENT_SIZE)
             (tv_sec, tv_usec, type_, code, value) = data = struct.unpack(FORMAT, event)

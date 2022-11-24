@@ -1,5 +1,7 @@
 # Read and Decode /dev/input/event<NUMBER>
 
+## Introduction
+
 The X86 architecture implements protection rings to separate the
 kernel and user space.  It means there is a bridge to cross between
 the kernel and user space.  For this reason, the Linux kernel
@@ -9,7 +11,8 @@ The first one, use the X86_64 syscall instruction to perform a system
 call.  By simplicity, the Linux kernel can only implement a limited
 list of core functions.  Because it would not make no sense to
 implement an OO API with zillion of methods wrapped by system calls.
-Actually, the kernel implements a bit less than 500 system calls.
+Actually, the kernel implements roughly 400 system calls (see
+`https://github.com/torvalds/linux/blob/master/arch/x86/entry/syscalls/syscall_64.tbl`).
 
 The second one, is to use several memory buffers through a virtual
 file system (VFS).  It explains why the Linux kernel exports events
@@ -30,3 +33,21 @@ struct input_event {
 ```
 
 For more details, see https://github.com/torvalds/linux/blob/master/include/uapi/linux/input.h#L28
+
+## How to use the program
+
+List the devices to discover your system, using the command in a terminal:
+```
+ls -l /dev/input/*
+```
+
+Watch kernel events when you unplug/plug devices, using the command:
+```
+dmesg
+```
+
+Run the program, notice it requires superuser right to read the device file:
+```
+sudo ./read-dev-event <MOUSE_EVENT_NUMBER>
+# Hit Ctrl+C to exit
+```
