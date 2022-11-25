@@ -1,3 +1,5 @@
+// Status: compile and run
+
 // The Wayland Protocol
 // Extended example code
 

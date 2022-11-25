@@ -1,3 +1,5 @@
+// Status: compile and run
+
 // https://jan.newmarch.name/Wayland/Input
 
 #include <stdio.h>

@@ -1,3 +1,5 @@
+// Status: compile and segfault
+
 // https://jan.newmarch.name/Wayland/Input/
 
 #include <stdio.h>
@@ -146,8 +148,7 @@ static struct wl_callback_listener configure_callback_listener = {
 
 static void
 create_window() {
-  egl_window = wl_egl_window_create(surface,
-                                    480, 360);
+  egl_window = wl_egl_window_create(surface, 480, 360);
   if (egl_window == EGL_NO_SURFACE) {
     fprintf(stderr, "Can't create egl window\n");
     exit(1);
@@ -156,12 +157,9 @@ create_window() {
   }
 
   egl_surface =
-    eglCreateWindowSurface(egl_display,
-                           egl_conf,
-                           egl_window, NULL);
+    eglCreateWindowSurface(egl_display, egl_conf, egl_window, NULL);
 
-  if (eglMakeCurrent(egl_display, egl_surface,
-                     egl_surface, egl_context)) {
+  if (eglMakeCurrent(egl_display, egl_surface, egl_surface, egl_context)) {
     fprintf(stderr, "Made current\n");
   } else {
     fprintf(stderr, "Made current failed\n");
@@ -183,8 +181,7 @@ create_window() {
 
 
 static void
-handle_ping(void *data, struct wl_shell_surface *shell_surface,
-	    uint32_t serial)
+handle_ping(void *data, struct wl_shell_surface *shell_surface, uint32_t serial)
 {
   wl_shell_surface_pong(shell_surface, serial);
   fprintf(stderr, "Pinged and ponged\n");
@@ -259,21 +256,16 @@ init_egl() {
                         configs, count, &n);
     
   for (i = 0; i < n; i++) {
-    eglGetConfigAttrib(egl_display,
-                       configs[i], EGL_BUFFER_SIZE, &size);
+    eglGetConfigAttrib(egl_display, configs[i], EGL_BUFFER_SIZE, &size);
     printf("Buffer size for config %d is %d\n", i, size);
-    eglGetConfigAttrib(egl_display,
-                       configs[i], EGL_RED_SIZE, &size);
+    eglGetConfigAttrib(egl_display, configs[i], EGL_RED_SIZE, &size);
     printf("Red size for config %d is %d\n", i, size);
 	
     egl_conf = configs[i];
     break;
   }
 
-  egl_context =
-    eglCreateContext(egl_display,
-                     egl_conf,
-                     EGL_NO_CONTEXT, context_attribs);
+  egl_context = eglCreateContext(egl_display, egl_conf, EGL_NO_CONTEXT, context_attribs);
 
 }
 
@@ -307,19 +299,18 @@ int main(int argc, char **argv) {
     fprintf(stderr, "Created surface %p\n", surface);
   }
 
+  // Note! This protocol is deprecated and not intended for production use. For desktop-style user interfaces, use xdg_shell. Compositors and clients should not implement this interface.
   shell_surface = wl_shell_get_shell_surface(shell, surface);
+  printf("segfault\n");
   wl_shell_surface_set_toplevel(shell_surface);
-
     
-  wl_shell_surface_add_listener(shell_surface,
-                                &shell_surface_listener, NULL);
+  wl_shell_surface_add_listener(shell_surface, &shell_surface_listener, NULL);
 
   init_egl();
   create_window();
 
   callback = wl_display_sync(display);
-  wl_callback_add_listener(callback, &configure_callback_listener,
-                           NULL);
+  wl_callback_add_listener(callback, &configure_callback_listener, NULL);
 
   while (wl_display_dispatch(display) != -1) {
     ;

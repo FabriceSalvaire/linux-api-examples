@@ -7,4 +7,9 @@ wayland-scanner \
   /usr/share/wayland-protocols/unstable/xdg-shell/xdg-shell-unstable-v6.xml \
   xdg-shell-client-protocol.h
 
-gcc -o test init_window.c -I. -lwayland-client -lwayland-server -lwayland-client-protocol -lwayland-egl -lEGL -lGLESv2
+gcc \
+    -lEGL -lGLESv2 \
+    -lwayland-client -lwayland-server -lwayland-client-protocol -lwayland-egl  \
+    -I. \
+    -o test init_window.c xdg-shell-client-protocol.c
+

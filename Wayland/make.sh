@@ -28,4 +28,4 @@
 gcc \
   -lwayland-client -lwayland-server -lwayland-egl -lEGL -lGLESv2 \
   -o pointer \
-  pointer.c xdg-shell-protocol.c
+  pointer.c

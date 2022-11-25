@@ -1,3 +1,5 @@
+// https://github.com/bugaevc/writing-wayland-clients
+
 #include <stdio.h>
 #include <string.h>
 
