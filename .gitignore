@@ -1,3 +1,14 @@
 *~
+__TRASH__
 
 *-build
+
+DRM-KMS/drm-prime-dumb-kms.c
+
+Wayland/client
+Wayland/egl/xdg-shell-client-protocol.c
+Wayland/egl/xdg-shell-client-protocol.h
+Wayland/pointer
+Wayland/seat
+Wayland/xdg-shell-client-protocol.h
+Wayland/xdg-shell-protocol.c
