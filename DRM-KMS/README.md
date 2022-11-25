@@ -16,12 +16,28 @@ DRM Framebuffer ->
          Planes ->
 ```
 
+A **framebuffer** is a set of pixels forming a single 2D image.
+
 **CRTC** stands for Cathode Ray Tube Controller.
 
 A **plane** is an an image layer, and the final image displayed by the CRTC is
 the composition of one or several planes.
 
-* [The DRM/KMS subsystem from a newbie’s point of view](https://events.static.linuxfound.org/sites/events/files/slides/brezillon-drm-kms.pdf)
+Planes takes a framebuffer and can optionally crop and scale it, or alter its colour management
+
+CRTCs stack, blend, and combine the output of planes together (e.g. a
+cursor plane, on top of a UI plane, on top of a video plane), and
+generate a single logical pixel stream from the resulting image, at a
+defined resolution
+
+Connectors consume CRTC output and send it to to a physical display
+device, e.g. a HDMI monitor, or an LVDS panel: they can be queried for
+current display information such as the display's EDID information
+block, or whether or not the display is currently connected
+
+
+* [The DRM/KMS subsystem from a newbie’s point of view, Boris Brezillon](https://events.static.linuxfound.org/sites/events/files/slides/brezillon-drm-kms.pdf)
+* [Embrace the Atomic (Display) Age, Daniel Vetter, 2016](https://www.youtube.com/watch?v=LjiB_JeDn2M)
 * https://wiki.st.com/stm32mpu/wiki/DRM_KMS_overview
 
 ## /dev/dri
@@ -60,5 +76,9 @@ lrwxrwxrwx. 1 root root 13 24 nov.  04:32 pci-0000:00:02.0-render -> ../renderD1
 
 ## Examples
 
-* https://gitlab.freedesktop.org/daniels/kms-quads - Straightforward and well-documented KMS example
-* https://github.com/nyorain/kms-vulkan - Example for using vulkan with drm and kms
+* [kms-quads](https://gitlab.freedesktop.org/daniels/kms-quads) - Straightforward and well-documented KMS example
+* [kmscube](https://gitlab.freedesktop.org/mesa/kmscube) - support for OpenGL ES rendering, GStreamer video decoding, explicit fencing
+* [kmscon](https://github.com/dvdhrm/kmscon) - text consoles reimplemented on top of KMS
+  [see also](https://www.freedesktop.org/wiki/Software/kmscon)
+* [Weston](https://gitlab.freedesktop.org/wayland/weston) - overlay plane usage, much more reasoning about timing
+* [kms-vulkan](https://github.com/nyorain/kms-vulkan) - Example for using vulkan with drm and kms
