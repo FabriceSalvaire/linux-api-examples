@@ -5,10 +5,12 @@ __TRASH__
 
 DRM-KMS/drm-prime-dumb-kms.c
 
-Wayland/client
-Wayland/egl/xdg-shell-client-protocol.c
-Wayland/egl/xdg-shell-client-protocol.h
-Wayland/pointer
-Wayland/seat
-Wayland/xdg-shell-client-protocol.h
-Wayland/xdg-shell-protocol.c
+Wayland/examples/client
+Wayland/examples/egl/xdg-shell-client-protocol.c
+Wayland/examples/egl/xdg-shell-client-protocol.h
+Wayland/examples/pointer
+Wayland/examples/seat
+Wayland/examples/xdg-shell-client-protocol.h
+Wayland/examples/xdg-shell-protocol.c
+Wayland/examples/hello-wayland/
+Wayland/examples/triangle
