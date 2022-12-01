@@ -1,8 +1,8 @@
-/*
- * Libinput Example
- *   inspired from libinput/tools
- *
- */
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright Fabrice SALVAIRE 2022
+
+// Libinput Example
+//   inspired from libinput/tools
 
 /**************************************************************************************************/
 
@@ -19,6 +19,7 @@
 #include <iostream>
 
 #include <libinput.h>
+#include <stdio.h>
 
 using namespace std;
 
@@ -44,13 +45,13 @@ open_restricted(const char *path, int flags, void *user_data)
   int fd = open(path, flags);
   return fd < 0 ? -errno : fd;
 }
- 
+
 void
 close_restricted(int fd, void *user_data)
 {
   close(fd);
 }
- 
+
 const static struct libinput_interface interface = {
   .open_restricted = open_restricted,
   .close_restricted = close_restricted,
@@ -92,7 +93,7 @@ print_tablet_pad_button_event(struct libinput_event *ev)
   cout << " " << button
        << " " << (state == LIBINPUT_BUTTON_STATE_PRESSED ? "pressed" : "released")
        << " mode=" << mode;
-  
+
   const auto group = libinput_event_tablet_pad_get_mode_group(p);
   if (libinput_tablet_pad_mode_group_button_is_toggle(group, button))
     cout << " <mode toggle>";
@@ -133,11 +134,11 @@ int
 handle_and_print_events(struct libinput *li)
 {
   int rc = -1;
-  struct libinput_event *ev;
 
   if (libinput_dispatch(li) != 0)
     cout << "libinput: Failed to dispatch libinput" << endl;
-  
+
+  struct libinput_event *ev;
   while ((ev = libinput_get_event(li)) != NULL) {
     // const auto li = libinput_event_get_context(ev);
     // libinput_get_user_data(libinput);
@@ -210,25 +211,21 @@ mainloop(struct libinput *li)
 
 int main(void) {
   // Set signal handler
-  struct sigaction act;
-  memset(&act, 0, sizeof(act));
-  act.sa_sigaction = sighandler;
+  struct sigaction act = { 0 };
   act.sa_flags = SA_SIGINFO;
+  act.sa_sigaction = sighandler;
   if (sigaction(SIGINT, &act, NULL) == -1) {
-    fprintf(stderr, "Failed to set up signal handling (%s)\n",
-            strerror(errno));
+    perror("Failed to set up signal handling");
     return EXIT_FAILURE;
   }
 
   // cout << "libinput version: " << LIBINPUT_VERSION << endl;
 
-  struct udev *udev;
-  udev = udev_new();
+  struct udev *udev = udev_new();
 
   // https://wayland.freedesktop.org/libinput/doc/latest/api/group__base.html
   // struct libinput * 	libinput_udev_create_context (const struct libinput_interface *interface, void *user_data, struct udev *udev)
-  struct libinput *li;
-  li = libinput_udev_create_context(&interface, NULL, udev);
+  struct libinput *li = libinput_udev_create_context(&interface, NULL, udev);
   if (!li) {
     return EXIT_FAILURE;
   }
@@ -242,8 +239,8 @@ int main(void) {
   }
 
   mainloop(li);
- 
+
   libinput_unref(li);
- 
+
   return EXIT_SUCCESS;
 }

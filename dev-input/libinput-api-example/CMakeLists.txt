@@ -7,6 +7,8 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake")
 
 ####################################################################################################
 
+# set(CMAKE_C_STANDARD 99)
+
 # https://wayland.freedesktop.org/libinput/doc/latest/building.html#building-against-libinput
 # https://cmake.org/cmake/help/latest/module/FindLibinput.html
 find_package(Libudev)
