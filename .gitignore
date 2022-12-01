@@ -2,6 +2,7 @@
 __TRASH__
 
 *-build
+build/
 
 drm-kms/drm-prime-dumb-kms.c
 
