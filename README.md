@@ -7,7 +7,7 @@ This repository contains a curated list of documentations and examples to explor
 * [DRM / KMS](drm-kms)
 * [Input Devices](dev-input)
     * [libinput](dev-input/libinput-api-example)
-* [POSIX](posix/README.md)
+* [POSIX](posix)
 * [PipeWire](pipewire)
 * [Real Time](real-time)
 * [Wayland](wayland)
