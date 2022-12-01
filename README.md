@@ -5,7 +5,7 @@ This repository contains a curated list of documentations and examples to explor
 **Table of Contents**
 * [D-Bus](dbus/README.md)
 * [DRM / KMS](drm-kms/README.md)
-* [Input Devices](dev-input/README.md)
+* [Input Devices](dev-input)
     * [libinput](dev-input/libinput-api-example/README.md)
 * [POSIX](posix/README.md)
 * [PipeWire](pipewire/README.md)
