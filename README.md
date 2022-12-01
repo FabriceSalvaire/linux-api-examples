@@ -3,14 +3,14 @@
 This repository contains a curated list of documentations and examples to explore the Linux API.
 
 **Table of Contents**
-* [D-Bus](dbus/README.md)
-* [DRM / KMS](drm-kms/README.md)
+* [D-Bus](dbus)
+* [DRM / KMS](drm-kms)
 * [Input Devices](dev-input)
-    * [libinput](dev-input/libinput-api-example/README.md)
+    * [libinput](dev-input/libinput-api-example)
 * [POSIX](posix/README.md)
-* [PipeWire](pipewire/README.md)
-* [Real Time](real-time/README.md)
-* [Wayland](wayland/README.md)
+* [PipeWire](pipewire)
+* [Real Time](real-time)
+* [Wayland](wayland)
 
 **Notes**
 * [Kernel](notes/kernel.md)
