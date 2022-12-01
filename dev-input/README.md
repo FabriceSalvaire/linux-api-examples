@@ -45,7 +45,10 @@ https://www.freedesktop.org/software/libevdev/doc/latest/
 https://gitlab.freedesktop.org/libevdev/libevdev
 libevdev is a library for handling evdev kernel devices. It abstracts the evdev ioctls through type-safe interfaces and provides functions to change the appearance of the device
 
-libudev is part of systemd https://github.com/systemd/systemd https://systemd.io http://0pointer.de/blog/projects/systemd.html https://en.wikipedia.org/wiki/Systemd
+libudev is part of systemd
+https://github.com/systemd/systemd https://systemd.io
+http://0pointer.de/blog/projects/systemd.html
+https://en.wikipedia.org/wiki/Systemd
 https://en.wikipedia.org/wiki/Udev
 
 kernel → libevdev → libinput → Compositor → Wayland client
@@ -67,7 +70,6 @@ device, and ultimately creates a device node for you somewhere in
 
 /usr/lib/udev/rules.d
 
-
 To go further:
 * Articles on system calls
     * https://www.cs.uaf.edu/2017/fall/cs301/lecture/11_17_syscall.html
@@ -75,6 +77,8 @@ To go further:
     * https://github.com/j00ru/windows-syscalls - Microsoft Windows System Call Tables
 
 ## How to use the program
+
+**dev-input** is a tool to read and decode `/dev/input/event`.
 
 List USB devices, using the command in a terminal:
 ```
@@ -118,7 +122,7 @@ See [libevdev group @freedesktop](https://gitlab.freedesktop.org/libevdev)
 * https://python-evdev.readthedocs.io/en/latest/
 * https://gitlab.freedesktop.org/libevdev/python-libevdev
 
-### USB Analyser 
+### USB Analyser
 
 * (Wireshark network protocol analyzer](https://www.wireshark.org)
 
