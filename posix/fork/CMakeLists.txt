@@ -8,6 +8,10 @@ project(fork LANGUAGES C)
 
 set(CMAKE_C_STANDARD 99)
 
+add_compile_options(
+  -Wall -Wextra -Wpedantic -Werror
+)
+
 ####################################################################################################
 
 add_executable(${PROJECT_NAME}

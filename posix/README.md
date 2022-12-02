@@ -14,21 +14,20 @@ Common **POSIX OS** are:
 
 Notice, this list is not exhaustive and the OS doesn't necessarily meet the standards!
 
+See also https://en.wikipedia.org/wiki/POSIX
+
 ## References
 
 * man pages section 2 (system calls) and 3 (library calls)
 
-* https://en.wikipedia.org/wiki/POSIX
-
 ## Note about the examples
 
-These examples cover the followings topics:
-* config
-* epoll
-* fork
-* signal
-
-They are written in [C99](https://en.wikipedia.org/wiki/C99).
+These examples written in [C99](https://en.wikipedia.org/wiki/C99)
+cover the followings topics:
+* query the system **config**
+* **epoll** API to monitor I/O events
+* **fork** a process
+* **signal** handling
 
 ## How to build the examples
 

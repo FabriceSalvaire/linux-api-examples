@@ -10,6 +10,8 @@
 // #include <string.h>
 #include <unistd.h>
 
+#define UNUSED(x) (void)(x)
+
 /**************************************************************************************************/
 
 void
@@ -19,15 +21,17 @@ signal_handler(int signal)
 }
 
 void
-signal_handler2(int signal, siginfo_t *siginfo, void *userdata)
+signal_handler2(int signal, siginfo_t *sig_info, void *user_data)
 {
+  UNUSED(sig_info);
+  UNUSED(user_data);
   printf("Received signal %i\n", signal);
 }
 
 /**************************************************************************************************/
 
 int
-main(int argc, char *argv[], char **envp)
+main()
 {
   int rc;
 
@@ -35,6 +39,7 @@ main(int argc, char *argv[], char **envp)
   // signal(2)
   typedef void (*sighandler_t)(int);
   sighandler_t old_signal_handler = signal(SIGUSR1, signal_handler);
+  UNUSED(old_signal_handler);
 
   // sigaction(2)
   struct sigaction act = { 0 };

@@ -13,7 +13,7 @@
 /**************************************************************************************************/
 
 int
-main(int argc, char *argv[], char **envp)
+main()
 {
   struct utsname utsname;
   if (uname(&utsname) == -1)

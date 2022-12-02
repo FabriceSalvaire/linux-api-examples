@@ -8,11 +8,16 @@
 #include <sys/types.h>
 #include <unistd.h>
 
+#define UNUSED(x) (void)(x)
+
 /**************************************************************************************************/
 
 int
 main(int argc, char *argv[], char **envp)
 {
+  UNUSED(argc);
+  UNUSED(envp);
+
   pid_t process_pid = getpid();
   printf("PID=%u\n", process_pid);
 

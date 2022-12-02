@@ -11,7 +11,7 @@
 /**************************************************************************************************/
 
 int
-main(int argc, char *argv[])
+main()
 {
   pid_t process_pid = getpid();
   printf("I am a child with PID=%u\n", process_pid);
